@@ -2,19 +2,14 @@ import pandas as pd
 import os
 from typing import Optional
 
-# y_col을 선택적(Optional)으로 받게 수정
 def load_csv(file_path: str, x_col: str, y_col: Optional[str] = None):
-    """
-    CSV 파일을 읽어서 필요한 컬럼만 추출합니다.
-    (x_col과 y_col이 같거나, y_col이 None인 경우도 처리)
-    """
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"❌ 파일을 찾을 수 없습니다: {file_path}")
+        raise FileNotFoundError(f"Filed found data{file_path}")
 
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
-        raise ValueError(f"❌ CSV 파일을 읽는 중 오류가 발생했습니다: {e}")
+        raise ValueError(f"Filed load csv: {e}")
 
     # 1. 불러올 컬럼 리스트 정리 (중복 제거 로직)
     cols_to_use = [x_col]
@@ -25,8 +20,8 @@ def load_csv(file_path: str, x_col: str, y_col: Optional[str] = None):
     for col in cols_to_use:
         if col not in df.columns:
             raise ValueError(
-                f"❌ 컬럼을 찾을 수 없습니다: {col}\n"
-                f"   파일 내 컬럼: {list(df.columns)}"
+                f"faild found colums: {col}\n"
+                f"exist columns: {list(df.columns)}"
             )
 
     # 3. 데이터 선택 (copy로 깊은 복사)

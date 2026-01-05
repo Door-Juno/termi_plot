@@ -30,6 +30,6 @@ def draw_terminal_plot(df:pd.DataFrame, x_col:str, y_col:str,title:str,kind:bool
 
 def show_stats(df:pd.DataFrame, col:str) :
     if col in df.columns and pd.api.types.is_numeric_dtype(df[col]):
-        print(f"    최대값 : {df[col].max():.4f}")
-        print(f"    최소값 : {df[col].min():.4f}")
-        print(f"    평균값 : {df[col].mean():.4f}")
+        print(f"    MAX : {df[col].max():.4f}")
+        print(f"    MIN : {df[col].min():.4f}")
+        print(f"    MEAN : {df[col].mean():.4f}")
